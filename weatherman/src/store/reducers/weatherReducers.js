@@ -1,4 +1,4 @@
-import { FETCH_WEATHER_INITIAL, FETCH_FORECAST, FETCH_WEATHER } from '../actions/actionTypes';
+/* import { FETCH_WEATHER_INITIAL, FETCH_FORECAST, FETCH_WEATHER } from '../actions/actionTypes';
 
 const initialState = {
   weatherInitial: [],
@@ -32,3 +32,4 @@ const weatherReducer = (state = initialState, action) => {
 };
 
 export default weatherReducer;
+ */

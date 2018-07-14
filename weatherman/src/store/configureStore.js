@@ -1,12 +1,11 @@
-import { createStore, combineReducers, compose, applyMiddleware } from 'redux';
-import thunk from 'redux-thunk';
+import { createStore, applyMiddleware } from 'redux';
+import createSagaMiddleware from 'redux-saga';
 
-import weatherReducer from './reducers/weatherReducers';
+import weatherReducer from './reducers';
+import mySaga from './sagas';
 
-const rootReducer = combineReducers({
-  weather: weatherReducer,
-});
+const sagaMiddleware = createSagaMiddleware();
 
-const configureStore = () => createStore(rootReducer, applyMiddleware(thunk));
+const store = createStore(weatherReducer, applyMiddleware(sagaMiddleware));
 
-export default configureStore;
+sagaMiddleware.run(mySaga);

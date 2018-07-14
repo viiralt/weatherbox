@@ -1,3 +1,3 @@
-export { fetchWeatherInitial } from './fetchWeatherInitial';
+/* export { fetchWeatherInitial } from './fetchWeatherInitial';
 export { fetchForecast } from './fetchForecast';
-export { fetchWeather } from './fetchWeather';
+export { fetchWeather } from './fetchWeather'; */
