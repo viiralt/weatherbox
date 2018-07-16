@@ -2,10 +2,9 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
 
-import * as ActionTypes from '../store/actions/actionTypes';
 import SearchBar from './SearchBar';
 import List from './List';
-import { fetchWeatherInitial } from '../store/actions';
+import { fetchWeatherInitial } from '../store/actions/actionCreators';
 
 class Dashboard extends Component {
   componentDidMount() {

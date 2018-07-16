@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import styled from 'styled-components';
 import { connect } from 'react-redux';
 
-import { fetchForecast } from '../store/actions';
+import { fetchForecast } from '../store/actions/actionCreators';
 
 class SearchBar extends Component {
   state = {

@@ -1,5 +1,5 @@
 import * as ActionTypes from './actionTypes';
-// action creators
+
 export const fetchWeatherInitial = () => ({
   type: ActionTypes.FETCH_WEATHER_INITIAL_REQUESTED,
 });
