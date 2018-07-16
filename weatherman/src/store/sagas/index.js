@@ -1,3 +1,7 @@
-import fetchWeatherInitialSaga from './fetchWeatherInitialSaga';
-import fetchForecastSaga from './fetchForecastSaga';
-import fetchWeatherSaga from './fetchWeatherSaga';
+import { all } from 'redux-saga/effects';
+import { fetchWeatherInitialWatcher } from './fetchWeatherInitialSaga';
+import { fetchForecastWatcher } from './fetchForecastSaga';
+
+export default function* rootSaga() {
+  yield all([fetchWeatherInitialWatcher(), fetchForecastWatcher()]);
+}

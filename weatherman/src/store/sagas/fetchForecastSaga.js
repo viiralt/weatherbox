@@ -1,27 +1,19 @@
 import { call, put, takeEvery } from 'redux-saga/effects';
+import axios from 'axios';
 
-import {
-  FETCH_FORECAST_REQUESTED,
-  FETCH_FORECAST_SUCCEEDED,
-  FETCH_FORECAST_FAILED,
-} from '../actions/actionTypes';
+import * as ActionTypes from '../actions/actionTypes';
+import { Api } from '../../Api';
 
-const API_KEY = '1dd204628a727f5f68ac7f428820c128';
-const URL = `http://api.openweathermap.org/data/2.5/weather?city=barcelona&APPID=${API_KEY}
-`;
-
-// worker Saga: will be fired on USER_FETCH_REQUESTED actions
-function* fetchForecast(action) {
+export function* fetchForecast(action) {
   try {
-    const forecast = yield call(Api.fetchForecast, action.payload.forecast);
-    yield put({ type: FETCH_FORECAST_SUCCEEDED, forecast });
-  } catch (e) {
-    yield put({ type: FETCH_FORECAST_FAILED, message: e.message });
+    const url = `${Api}&units=metric&q=${action.payload}`;
+    const response = yield call(axios.get, url);
+    yield put({ type: ActionTypes.FETCH_FORECAST_SUCCEEDED, payload: response.data });
+  } catch (error) {
+    yield put({ type: ActionTypes.FETCH_FORECAST_FAILED, message: error });
   }
 }
 
-function* fetchForecastSaga() {
-  yield takeEvery(FETCH_FORECAST_REQUESTED, fetchForecast);
+export function* fetchForecastWatcher() {
+  yield takeEvery(ActionTypes.FETCH_FORECAST_REQUESTED, fetchForecast);
 }
-
-export default fetchForecastSaga;

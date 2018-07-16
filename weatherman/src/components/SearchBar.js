@@ -1,54 +1,54 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
+import { connect } from 'react-redux';
 
-/* import { fetchWeather } from '../store/actions'; */
+import { fetchForecast } from '../store/actions';
 
-export default class SearchBar extends Component {
+class SearchBar extends Component {
   state = {
-    query: '',
-    weatherInitial: [],
+    city: '',
   };
 
-  componentDidMount() {
-    this.fetchWeatherInitial();
-  }
-
-  onInputChange = event => {
-    this.setState({ query: event.target.value });
+  handleInputChange = event => {
+    this.setState({ city: event.target.value });
   };
 
-  onFormSubmit = event => {
+  handleFormSubmit = event => {
     event.preventDefault();
-    this.setState({ query: '' });
   };
 
-  fetchWeatherInitial = () => {
-    const URL =
-      'http://api.openweathermap.org/data/2.5/group?id=3128760,5391959,2643743,3988507&units=metric?appid=1dd204628a727f5f68ac7f428820c128';
-    const API_KEY = '1dd204628a727f5f68ac7f428820c128';
-
-    fetch(URL)
-      .then(res => res.json())
-      .then(weatherInitial => console.log(weatherInitial))
-      .then(weatherInitial => this.setState((weatherInitial: weatherInitial)));
+  handleButtonClick = () => {
+    const { fetchForecast } = this.props;
+    const { city } = this.state;
+    fetchForecast(city);
+    this.setState({ city: '' });
   };
 
   render() {
     return (
       <Wrapper>
-        <Form onSubmit={this.onFormSubmit} />
-        <SearchQuery
-          placeholder="please enter city"
-          value={this.state.query}
-          onChange={this.onInputChange}
-        />
-        <SearchButton type="submit">Go</SearchButton>
+        <Form onSubmit={this.handleFormSubmit}>
+          <Input
+            placeholder="please enter city"
+            value={this.state.city}
+            onChange={this.handleInputChange}
+          />
+          <SearchButton onClick={this.handleButtonClick} type="submit">
+            Go
+          </SearchButton>
+        </Form>
       </Wrapper>
     );
   }
 }
 
+const mapStateToProps = state => ({
+  weatherForecast: state.weatherForecast,
+});
+
+export default connect(mapStateToProps, { fetchForecast })(SearchBar);
+
 const Wrapper = styled.div``;
-const SearchQuery = styled.input``;
+const Input = styled.input``;
 const SearchButton = styled.button``;
 const Form = styled.form``;

@@ -1,3 +1,10 @@
-/* export { fetchWeatherInitial } from './fetchWeatherInitial';
-export { fetchForecast } from './fetchForecast';
-export { fetchWeather } from './fetchWeather'; */
+import * as ActionTypes from './actionTypes';
+// action creators
+export const fetchWeatherInitial = () => ({
+  type: ActionTypes.FETCH_WEATHER_INITIAL_REQUESTED,
+});
+
+export const fetchForecast = city => ({
+  type: ActionTypes.FETCH_FORECAST_REQUESTED,
+  payload: city,
+});

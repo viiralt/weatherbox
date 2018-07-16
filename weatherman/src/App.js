@@ -1,10 +1,15 @@
 import React, { Component } from 'react';
 
-import SearchBar from './components/SearchBar';
+import Dashboard from './components/Dashboard';
+import Wrapper from './elements/Wrapper';
 
 class App extends Component {
   render() {
-    return <SearchBar />;
+    return (
+      <Wrapper>
+        <Dashboard />
+      </Wrapper>
+    );
   }
 }
 
