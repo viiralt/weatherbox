@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import styled from 'styled-components';
 
 import SearchBar from './SearchBar';
-import List from './List';
+import CityList from './CityList';
 import { fetchWeatherInitial } from '../store/actions/actionCreators';
 
 class Dashboard extends Component {
@@ -13,10 +13,15 @@ class Dashboard extends Component {
   }
 
   render() {
+    const { isFetching, weatherInitial } = this.props;
+
+    if (isFetching) {
+      return <p>Loading...</p>;
+    }
     return (
       <Wrapper>
         <SearchBar />
-        <List />
+        <CityList weatherInitial={weatherInitial.list} />
       </Wrapper>
     );
   }
@@ -24,6 +29,7 @@ class Dashboard extends Component {
 
 const mapStateToProps = state => ({
   weatherInitial: state.weatherInitial,
+  isFetching: state.isFetching,
 });
 
 export default connect(mapStateToProps, { fetchWeatherInitial })(Dashboard);

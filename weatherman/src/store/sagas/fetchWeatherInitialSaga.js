@@ -7,7 +7,10 @@ import { InitialApi } from '../../Api';
 function* fetchWeatherInitial() {
   try {
     const response = yield call(axios.get, InitialApi);
-    yield put({ type: ActionTypes.FETCH_WEATHER_INITIAL_SUCCEEDED, payload: response.data });
+    yield put({
+      type: ActionTypes.FETCH_WEATHER_INITIAL_SUCCEEDED,
+      payload: response.data,
+    });
   } catch (error) {
     yield put({ type: ActionTypes.FETCH_WEATHER_INITIAL_FAILED, message: error });
   }

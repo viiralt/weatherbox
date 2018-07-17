@@ -3,6 +3,7 @@ import * as ActionTypes from '../actions/actionTypes';
 const initialState = {
   weatherForecast: [],
   weatherInitial: [],
+  isFetching: true,
 };
 
 const weatherReducer = (state = initialState, action) => {
@@ -11,6 +12,7 @@ const weatherReducer = (state = initialState, action) => {
       return {
         ...state,
         weatherInitial: action.payload,
+        isFetching: false,
       };
     }
     case ActionTypes.FETCH_FORECAST_SUCCEEDED: {
