@@ -25,14 +25,11 @@ class SearchBar extends Component {
   };
 
   render() {
+    const { city } = this.state;
     return (
       <Wrapper>
         <Form onSubmit={this.handleFormSubmit}>
-          <Input
-            placeholder="please enter city"
-            value={this.state.city}
-            onChange={this.handleInputChange}
-          />
+          <Input placeholder="please enter city" value={city} onChange={this.handleInputChange} />
           <SearchButton onClick={this.handleButtonClick} type="submit">
             Go
           </SearchButton>

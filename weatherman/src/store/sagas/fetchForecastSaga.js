@@ -8,7 +8,11 @@ export function* fetchForecast(action) {
   try {
     const url = `${Api}&units=metric&q=${action.payload}`;
     const response = yield call(axios.get, url);
-    yield put({ type: ActionTypes.FETCH_FORECAST_SUCCEEDED, payload: response.data });
+    yield put({
+      type: ActionTypes.FETCH_FORECAST_SUCCEEDED,
+      payload: response.data,
+      isFetching: true,
+    });
   } catch (error) {
     yield put({ type: ActionTypes.FETCH_FORECAST_FAILED, message: error });
   }
