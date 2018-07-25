@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+<<<<<<< HEAD
 import { RingLoader } from 'react-spinners';
 import styled from 'styled-components';
 
@@ -8,6 +9,13 @@ import CityList from './CityList';
 
 import { fetchWeatherInitial } from '../store/actions/actionCreators';
 import { Heading, Text } from '../elements';
+=======
+import styled from 'styled-components';
+
+import SearchBar from './SearchBar';
+import CityList from './CityList';
+import { fetchWeatherInitial } from '../store/actions/actionCreators';
+>>>>>>> 79613553a1550b1e794e80b40226dda1ccdc7dce
 
 class Dashboard extends Component {
   componentDidMount() {
@@ -16,6 +24,7 @@ class Dashboard extends Component {
   }
 
   render() {
+<<<<<<< HEAD
     const { isFetchingGroup, fetchGroupWeather } = this.props;
 
     if (isFetchingGroup) {
@@ -33,10 +42,23 @@ class Dashboard extends Component {
           <CityList fetchGroupWeather={fetchGroupWeather.list} />
         </CityWrapper>
       </DashWrapper>
+=======
+    const { isFetching, weatherInitial } = this.props;
+
+    if (isFetching) {
+      return <p>Loading...</p>;
+    }
+    return (
+      <Wrapper>
+        <SearchBar />
+        <CityList weatherInitial={weatherInitial.list} />
+      </Wrapper>
+>>>>>>> 79613553a1550b1e794e80b40226dda1ccdc7dce
     );
   }
 }
 
+<<<<<<< HEAD
 const DashWrapper = styled.div`
   width: 80%;
   display: flex;
@@ -58,3 +80,13 @@ const mapStateToProps = state => ({
 });
 
 export default connect(mapStateToProps, { fetchWeatherInitial })(Dashboard);
+=======
+const mapStateToProps = state => ({
+  weatherInitial: state.weatherInitial,
+  isFetching: state.isFetching,
+});
+
+export default connect(mapStateToProps, { fetchWeatherInitial })(Dashboard);
+
+const Wrapper = styled.div``;
+>>>>>>> 79613553a1550b1e794e80b40226dda1ccdc7dce
