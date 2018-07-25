@@ -1,3 +1,13 @@
+<<<<<<< HEAD
+import React from 'react';
+
+import CityListItem from './CityListItem';
+
+const CityList = ({ fetchGroupWeather }) =>
+  fetchGroupWeather.map(city => <CityListItem city={city} key={city.id} />);
+
+export default CityList;
+=======
 import React, { Component } from 'react';
 
 import Wrapper from '../elements/Wrapper';
@@ -18,3 +28,4 @@ export default class CityList extends Component {
     );
   }
 }
+>>>>>>> 79613553a1550b1e794e80b40226dda1ccdc7dce
